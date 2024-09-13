@@ -4,9 +4,10 @@ import { connectDB } from '@/db/database'
 import { MongoClient } from 'mongodb'
 
 export default async function Home() {
-  let client: any = await connectDB
+  const client: MongoClient = await connectDB
   const db = client.db('simple_board')
-  const result: any = await db.collection('post').find().toArray()
+  const result: unknown = await db.collection('post').find().toArray()
+  console.log(result)
 
   return (
     <div className={styles.page}>
