@@ -8,8 +8,6 @@ export default async function Home() {
   const db = client.db('simple_board')
   const result: any = await db.collection('post').find().toArray()
 
-  console.log(result)
-
   return (
     <div className={styles.page}>
       <main className={styles.main}>
