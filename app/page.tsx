@@ -1,7 +1,15 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import { connectDB } from '@/db/database'
+import { MongoClient } from 'mongodb'
 
-export default function Home() {
+export default async function Home() {
+  let client: any = await connectDB
+  const db = client.db('simple_board')
+  const result: any = await db.collection('post').find().toArray()
+
+  console.log(result)
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
