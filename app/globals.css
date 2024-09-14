@@ -1,12 +1,17 @@
 :root {
-  --background: #ffffff;
+  --background: #dbdbdb;
   --foreground: #171717;
+  --font-family-sans: arial, sans-serif;
+  --font-size-base: 16px;
+  --font-size-large: 24px;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #dee5d4;
   }
 }
 
@@ -17,6 +22,8 @@ body {
 }
 
 body {
+  width: calc(100% -200px);
+  margin-left: 200px;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;

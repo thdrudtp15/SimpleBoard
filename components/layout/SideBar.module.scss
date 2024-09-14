@@ -1,0 +1,56 @@
+@mixin flex($display, $items, $justify, $directions) {
+  display: $display;
+  align-items: $items;
+  justify-content: $justify;
+  flex-direction: $directions;
+}
+// @mixin font() {
+// }
+
+.aside {
+  background-color: #f5f7f8;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  padding: 10px;
+  @include flex(flex, flex-start, space-between, column);
+}
+.aside_top {
+  width: 100%;
+}
+.aside_bottom {
+  width: 100%;
+  border-top: 0.5px solid #ccc;
+  height: 200px;
+  padding-top: 15px;
+}
+.title {
+  width: 100%;
+  @include flex(flex, center, center, row);
+  height: 70px;
+}
+.content_container {
+  list-style: none;
+  @include flex(flex, '', '', column);
+  gap: 8px;
+}
+
+.content_tab {
+  @include flex(flex, center, '', '');
+  gap: 8px;
+  padding: 8px;
+  border-radius: 0.5rem;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.content_tab__deactive {
+  @extend .content_tab;
+  color: #8a8a8a;
+}
+
+.content_tab__select {
+  background-color: #f4ce14;
+}
