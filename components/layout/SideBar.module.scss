@@ -10,9 +10,9 @@
   position: fixed;
   left: 0;
   top: 0;
-  width: 200px;
+  width: 400px;
   height: 100%;
-  padding: 10px;
+  padding: 25px;
   @include flex(flex, flex-start, space-between, column);
 }
 .aside_top {
@@ -22,7 +22,7 @@
   width: 100%;
   border-top: 0.5px solid #ccc;
   height: 200px;
-  padding-top: 15px;
+  padding-top: 16px;
 }
 .title {
   width: 100%;
@@ -32,15 +32,15 @@
 .content_container {
   list-style: none;
   @include flex(flex, '', '', column);
-  gap: 8px;
+  gap: var(--flex-gap-base);
 }
 
 .content_tab {
   @include flex(flex, center, '', '');
-  gap: 8px;
+  gap: var(--flex-gap-base);
   padding: 8px;
   border-radius: 0.5rem;
-  font-size: 14px;
+  font-size: var(--font-size-large);
   font-weight: bold;
 }
 

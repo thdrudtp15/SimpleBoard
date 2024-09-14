@@ -7,6 +7,9 @@
   --font-size-large: 24px;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
+  --flex-gap-small: 8px;
+  --flex-gap-base: 16px;
+  --flex-gap-large: 24px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,8 +26,8 @@ body {
 }
 
 body {
-  width: calc(100% -200px);
-  margin-left: 200px;
+  width: calc(100% -400px);
+  margin-left: 400px;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
