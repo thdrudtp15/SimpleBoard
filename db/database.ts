@@ -1,8 +1,5 @@
 import { MongoClient } from 'mongodb'
 const url = process.env.NEXT_DATABASE_URL
-const options: any = { useNewUrlParser: true }
-let connectDB: Promise<MongoClient>
-
-connectDB = new MongoClient(url as string, options).connect()
+const connectDB: Promise<MongoClient> = new MongoClient(url as string).connect()
 
 export { connectDB }
