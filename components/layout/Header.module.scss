@@ -11,7 +11,7 @@
   background-color: var(--background);
   padding: 0px 20px;
   // background-color: azure;
-  @include flex(center, space-between, row);
+  @include flex(center, flex-end, row);
 }
 
 .profile_box {

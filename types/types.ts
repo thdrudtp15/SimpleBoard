@@ -1,10 +1,11 @@
 // post 타입 정의
 export type post = {
+  _id: string
   title: string
-  content: string
-  author_name: string
-  author_id: string
-  images: string[]
-  date: string
   activate: boolean
+  content: string
+  date: Date
+  images: string[]
+  public: boolean
+  author: string
 }
