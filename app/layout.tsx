@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import SideBar from '@/components/layout/SideBar'
 import Header from '@/components/layout/Header'
+import SideBar from '@/components/layout/SideBar'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 
@@ -34,7 +34,9 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header session={session} />
         <SideBar />
-        {children}
+        <div className={'inner_container'}>
+          <div className={'content_container'}>{children}</div>
+        </div>
       </body>
     </html>
   )

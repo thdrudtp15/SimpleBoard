@@ -6,23 +6,15 @@
 }
 
 .aside {
-  background-color: #f5f7f8;
+  background-color: var(--background);
   position: fixed;
   left: 0;
   top: 0;
-  width: 400px;
+  width: 300px;
   height: 100%;
-  padding: 25px;
-  @include flex(flex, flex-start, space-between, column);
-}
-.aside_top {
-  width: 100%;
-}
-.aside_bottom {
-  width: 100%;
-  border-top: 0.5px solid #ccc;
-  height: 200px;
-  padding-top: 16px;
+  padding: 25px 0px 25px 25px;
+  gap: 120px;
+  @include flex(flex, flex-start, flex-start, column);
 }
 .title {
   width: 100%;
@@ -33,15 +25,17 @@
   list-style: none;
   @include flex(flex, '', '', column);
   gap: var(--flex-gap-base);
+  width: 100%;
 }
 
 .content_tab {
   @include flex(flex, center, '', '');
   gap: var(--flex-gap-base);
-  padding: 8px;
+  padding: var(--padding-around-base);
   border-radius: 0.5rem;
   font-size: var(--font-size-base);
   font-weight: bold;
+  color: var(--foreground);
 }
 
 .content_tab__deactive {
@@ -50,5 +44,6 @@
 }
 
 .content_tab__select {
-  background-color: #f4ce14;
+  background-color: #ead8b1;
+  color: var(--background);
 }

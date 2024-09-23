@@ -1,5 +1,4 @@
 // import Image from 'next/image'
-import styles from './page.module.css'
 // import { connectDB } from '@/db/database'
 // import { MongoClient } from 'mongodb'
 
@@ -9,5 +8,5 @@ export default async function Home() {
   // const result: unknown = await db.collection('post').find().toArray()
   // console.log(result)
 
-  return <div className={styles.inner_container}></div>
+  return <div></div>
 }
