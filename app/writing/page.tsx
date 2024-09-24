@@ -1,5 +1,9 @@
-// import Editor from '@/components/lib/Editor'
+import Editor from '@/components/lib/Editor'
 
 export default function Page() {
-  return <div>{/* <Editor /> */}</div>
+  return (
+    <div>
+      <Editor />
+    </div>
+  )
 }

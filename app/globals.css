@@ -59,6 +59,7 @@ a {
 .inner_container {
   height: calc(100vh - 60px);
   padding-bottom: 25px;
+  color: #001f3f;
 }
 .content_container {
   background-color: white;
