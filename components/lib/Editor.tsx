@@ -3,7 +3,7 @@
 import 'react-quill/dist/quill.snow.css'
 import styles from './Editor.module.scss'
 import ReactQuill from 'react-quill'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 import Input from '../common/Input'
 
 const modules = {
@@ -30,15 +30,27 @@ export default function Editor() {
   const [content, setContent] = useState<string>('')
   const [publicOption, setPublicOption] = useState<boolean>(false)
 
+  const write = async () => {
+    const _res = await fetch('/api/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title,
+        content,
+        publicOption,
+      }),
+    })
+      .then((response) => console.log(response))
+      .catch((e) => console.log(e))
+  }
+
   return (
     <div>
       <label>
         제목
-        <Input
-          style="text"
-          value={title}
-          onChange={setTitle as Dispatch<SetStateAction<string | boolean>>}
-        />
+        <Input style="text" value={title} onChange={setTitle} />
       </label>
       <ReactQuill
         modules={modules}
@@ -56,6 +68,7 @@ export default function Editor() {
           onChange={() => setPublicOption((prev) => !prev)}
         />
       </label>
+      <button onClick={write}>글쓰기</button>
     </div>
   )
 }

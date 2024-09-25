@@ -1,32 +1,38 @@
 import { Dispatch, SetStateAction } from 'react'
 
-type propsType<T> = {
-  style: string
-  value: T
-  checked?: boolean | undefined
-  onChange: Dispatch<SetStateAction<T>>
+type TextInputProps = {
+  style: 'text'
+  value: string
+  onChange: Dispatch<SetStateAction<string>>
 }
 
-export default function Input({
-  style,
-  value,
-  checked,
-  onChange,
-}: propsType<string | boolean>) {
+type CheckboxInputType = {
+  style: 'checkbox'
+  value: boolean
+  onChange: Dispatch<SetStateAction<boolean>>
+}
+
+type propsType = TextInputProps | CheckboxInputType
+
+export default function Input(props: propsType) {
+  const { style, value, onChange } = props || {}
+
   if (style === 'text') {
     return (
       <input
         type="text"
         value={value as string}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value as string)}
       />
     )
   } else if (style === 'checkbox') {
     return (
       <input
         type="checkbox"
-        checked={checked}
-        onChange={() => onChange((prev: unknown) => !prev)}
+        checked={value as boolean}
+        onChange={() =>
+          onChange((prev) => (typeof prev === 'boolean' ? !prev : false))
+        }
       />
     )
   }
