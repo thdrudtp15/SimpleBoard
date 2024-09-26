@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
     const db = client.db('simple_board')
     const result: unknown = await db.collection('post').insertOne(body)
   } catch (e) {
-    console.log(e)
+    console.log('서버에러')
     return NextResponse.json({ error: 'Server Error' }, { status: 500 })
   }
 

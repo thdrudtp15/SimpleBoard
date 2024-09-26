@@ -2,7 +2,7 @@
 
 import styles from './Header.module.scss'
 
-// import { signIn, signOut } from 'next-auth/react'
+import { signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
 import { FaRegBell } from 'react-icons/fa'
 import { Session } from 'next-auth'
@@ -25,8 +25,8 @@ export default function Header({ session }: { session: Session | null }) {
         )}
         <p className={styles.profile_name}>{session?.user?.name}</p>
       </div>
-      {/* {!session && <button onClick={() => signIn()}>로그인</button>}
-      {session && <button onClick={() => signOut()}>로그아웃</button>} */}
+      {!session && <button onClick={() => signIn()}>로그인</button>}
+      {session && <button onClick={() => signOut()}>로그아웃</button>}
     </header>
   )
 }

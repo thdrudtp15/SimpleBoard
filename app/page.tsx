@@ -2,6 +2,8 @@
 // import { connectDB } from '@/db/database'
 // import { MongoClient } from 'mongodb'
 
+import ReactQuill from 'react-quill'
+
 export default async function Home() {
   // const client: MongoClient = await connectDB
   // const db = client.db('simple_board')

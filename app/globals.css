@@ -14,7 +14,7 @@
   --padding-around-base: 16px;
   --padding-around-large: 24px;
 }
-
+@import 'react-quill/dist/quill.snow.css';
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

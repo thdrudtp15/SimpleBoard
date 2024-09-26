@@ -12,7 +12,7 @@ const modules = {
     ['bold', 'italic', 'underline', 'strike'], // toggled buttons
     ['link'],
     [{ header: 1 }, { header: 2 }], // custom button values
-    [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
+    [{ list: 'ordered' }, { list: 'bullet' }],
     [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
     [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
     [{ direction: 'rtl' }], // text direction
@@ -25,6 +25,25 @@ const modules = {
   ],
   // 순서를 잘 구성해서 작성할 것
 }
+const formats = [
+  'font',
+  'code-block',
+  'size',
+  'header',
+  'color',
+  'background',
+  'bold',
+  'italic',
+  'underline',
+  'strike',
+  'blockquote',
+  'list',
+  'bullet',
+  'indent',
+  'link',
+  'image',
+]
+
 export default function Editor() {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
@@ -42,8 +61,9 @@ export default function Editor() {
         publicOption,
       }),
     })
-      .then((response) => console.log(response))
-      .catch((e) => console.log(e))
+    if (_res.status === 500) {
+      alert('에러 발생')
+    }
   }
 
   return (
@@ -59,6 +79,7 @@ export default function Editor() {
         onChange={setContent}
         placeholder="글 작성해주세요"
         className={styles.editor}
+        formats={formats}
       />
       <label>
         비공개
@@ -69,6 +90,7 @@ export default function Editor() {
         />
       </label>
       <button onClick={write}>글쓰기</button>
+      <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </div>
   )
 }

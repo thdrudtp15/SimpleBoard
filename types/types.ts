@@ -1,5 +1,5 @@
 // post 타입 정의
-export type post = {
+export type postType = {
   _id: string
   title: string
   activate: boolean
