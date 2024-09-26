@@ -17,7 +17,7 @@ export default function SideBar() {
   const tabArray: { title: string; image?: ReactElement; link: string }[] = [
     { title: 'DASHBOARD', image: <FaHome size={24} />, link: '/' },
     { title: 'WRITE', image: <FaPen size={24} />, link: '/writing' },
-    { title: 'LIST', image: <FaListOl size={24} />, link: '/list' },
+    { title: 'LIST', image: <FaListOl size={24} />, link: '/post/list' },
     {
       title: 'SETTING',
       image: <MdSettingsSuggest size={24} />,
@@ -32,7 +32,7 @@ export default function SideBar() {
         {tabArray?.map((item) => (
           <Link
             className={`${styles.content_tab} ${
-              item.link === path && styles.content_tab__select
+              path?.startsWith(item.link) && styles.content_tab__select
             }`}
             href={item.link}
             key={item.title}

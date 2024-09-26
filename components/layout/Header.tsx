@@ -6,10 +6,32 @@ import { signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
 import { FaRegBell } from 'react-icons/fa'
 import { Session } from 'next-auth'
+import css from 'styled-jsx/css'
+import styled from 'styled-components'
+
+type style_flexType = {
+  items: string
+  justify: string
+  direction: string
+}
+
+const flex = ({ items, justify, direction }: style_flexType) => css`
+  display: flex;
+  align-items: ${items};
+  justify-content: ${justify};
+  flex-direction: ${direction};
+`
+
+const StyledHeader = styled.header<style_flexType>`
+  ${(props) => flex(props)}
+  width: 100%;
+  height: 60px;
+  background-color: var(--background);
+`
 
 export default function Header({ session }: { session: Session | null }) {
   return (
-    <header className={styles.header}>
+    <StyledHeader items="center" justify="flex-end" direction="row">
       <div className={styles.profile_box}>
         {session && (
           <>
@@ -27,6 +49,6 @@ export default function Header({ session }: { session: Session | null }) {
       </div>
       {!session && <button onClick={() => signIn()}>로그인</button>}
       {session && <button onClick={() => signOut()}>로그아웃</button>}
-    </header>
+    </StyledHeader>
   )
 }
