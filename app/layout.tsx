@@ -3,8 +3,6 @@ import localFont from 'next/font/local'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import SideBar from '@/components/layout/SideBar'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/pages/api/auth/[...nextauth]'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -27,12 +25,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const session = await getServerSession(authOptions)
-
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Header session={session} />
+        <Header />
         <SideBar />
         <div className={'inner_container'}>
           <div className={'content_container'}>{children}</div>
