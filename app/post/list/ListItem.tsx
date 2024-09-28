@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function ListItem({ data }: { data: postType[] }) {
   return (
     <div className={styles.list_container}>
-      {data?.map((item, index) => (
+      {data?.map((item) => (
         <Link
           className={styles.list_box}
           href={`/post/${item._id}`}

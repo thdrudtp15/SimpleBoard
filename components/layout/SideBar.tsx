@@ -32,7 +32,7 @@ export default function SideBar() {
         {tabArray?.map((item) => (
           <Link
             className={`${styles.content_tab} ${
-              path?.startsWith(item.link) && styles.content_tab__select
+              path === item.link && styles.content_tab__select
             }`}
             href={item.link}
             key={item.title}

@@ -1,5 +1,6 @@
 import { connectDB } from '@/db/database'
 import { MongoClient, ObjectId } from 'mongodb'
+import Comment from './Comment'
 
 export default async function Page(props: { params: { id: string } }) {
   console.log(props.params.id)
@@ -14,6 +15,7 @@ export default async function Page(props: { params: { id: string } }) {
     <div>
       <h1>{result?.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: result?.content }}></div>
+      <Comment />
     </div>
   )
 }
