@@ -15,7 +15,7 @@ export default async function Page(props: { params: { id: string } }) {
     <div>
       <h1>{result?.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: result?.content }}></div>
-      <Comment />
+      <Comment id={props.params.id} />
     </div>
   )
 }

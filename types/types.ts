@@ -9,3 +9,13 @@ export type postType = {
   public: boolean
   author: string
 }
+
+export type commentType = {
+  _id: string
+  parent_id: string
+  comment: string
+  date: Date
+  ref?: number
+  author: string
+  author_image: string
+}
