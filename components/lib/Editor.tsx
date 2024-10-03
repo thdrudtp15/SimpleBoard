@@ -1,6 +1,5 @@
 'use client'
 
-import 'react-quill/dist/quill.snow.css'
 import styles from './Editor.module.scss'
 import ReactQuill from 'react-quill'
 import { useState } from 'react'
@@ -13,7 +12,6 @@ const modules = {
     ['link'],
     [{ header: 1 }, { header: 2 }], // custom button values
     [{ list: 'ordered' }, { list: 'bullet' }],
-    [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
     [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
     [{ direction: 'rtl' }], // text direction
     [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown

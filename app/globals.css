@@ -1,6 +1,6 @@
 :root {
-  --background: #001f3f;
-  --foreground: #fff;
+  --background: #fff;
+  --foreground: black;
   --font-family-sans: arial, sans-serif;
   --font-size-small: 8px;
   --font-size-base: 16px;
@@ -29,8 +29,6 @@ body {
 }
 
 body {
-  width: calc(100% -300px) !important;
-  margin-left: 300px !important;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
@@ -56,7 +54,7 @@ a {
   }
 }
 
-.inner_container {
+/* .inner_container {
   height: calc(100vh - 60px);
   padding-bottom: 25px;
   color: #001f3f;
@@ -67,4 +65,4 @@ a {
   height: 100%;
   border-radius: 25px;
   padding: 20px;
-}
+} */

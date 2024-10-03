@@ -1,14 +1,25 @@
-// import Image from 'next/image'
-// import { connectDB } from '@/db/database'
-// import { MongoClient } from 'mongodb'
+import { connectDB } from '@/db/database'
+import { MongoClient, ObjectId } from 'mongodb'
 
-import ReactQuill from 'react-quill'
+import { postType } from '@/types/types'
+import dynamic from 'next/dynamic'
+const ListItem = dynamic(() => import('./ListItem'))
 
 export default async function Home() {
-  // const client: MongoClient = await connectDB
-  // const db = client.db('simple_board')
-  // const result: unknown = await db.collection('post').find().toArray()
-  // console.log(result)
+  const client: MongoClient = await connectDB
+  const db = client.db('simple_board')
+  const result = await db.collection('post').find().toArray()
+  const data: postType[] = result.map(
+    (item) =>
+      ({
+        ...item,
+        _id: item._id.toString(),
+      } as postType),
+  )
 
-  return <div></div>
+  return (
+    <div>
+      <ListItem data={data} />
+    </div>
+  )
 }

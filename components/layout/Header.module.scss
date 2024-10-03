@@ -9,9 +9,14 @@
   width: 100%;
   height: 60px;
   background-color: var(--background);
-  @include flex(center, flex-end, row);
+  @include flex(center, space-between, row);
 }
-
+.link_box {
+  height: 100%;
+  display: flex;
+  gap: var(--flex-gap-small);
+  @include flex(center, center, 'row');
+}
 .profile_box {
   width: fit-content;
   @include flex(center, center, row);
@@ -26,7 +31,4 @@
 .profile_name {
   font-size: var(--font-size-base);
   font-weight: bold;
-}
-
-.profile_arlam {
 }

@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import SideBar from '@/components/layout/SideBar'
+import 'react-quill/dist/quill.snow.css'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -29,7 +30,6 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
-        <SideBar />
         <div className={'inner_container'}>
           <div className={'content_container'}>{children}</div>
         </div>
