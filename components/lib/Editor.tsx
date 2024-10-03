@@ -1,6 +1,7 @@
 'use client'
 
 import styles from './Editor.module.scss'
+import './ReactQuill.css'
 import ReactQuill from 'react-quill'
 import { useState } from 'react'
 import Input from '../common/Input'
@@ -66,29 +67,42 @@ export default function Editor() {
 
   return (
     <div>
-      <label>
-        제목
-        <Input style="text" value={title} onChange={setTitle} />
-      </label>
-      <ReactQuill
-        modules={modules}
-        theme="snow"
-        value={content}
-        onChange={setContent}
-        placeholder="글 작성해주세요"
-        className={styles.editor}
-        formats={formats}
-      />
-      <label>
-        비공개
-        <input
-          type="checkbox"
-          checked={publicOption}
-          onChange={() => setPublicOption((prev) => !prev)}
-        />
-      </label>
-      <button onClick={write}>글쓰기</button>
-      <div dangerouslySetInnerHTML={{ __html: content }}></div>
+      <div className={styles.editor_input__title}>
+        <label>
+          <Input style="write_title" value={title} onChange={setTitle} />
+        </label>
+      </div>
+      <div className={styles.editor_container}>
+        <div className={styles.editor_section}>
+          <ReactQuill
+            modules={modules}
+            theme="snow"
+            value={content}
+            onChange={setContent}
+            placeholder="글 작성해주세요"
+            className={styles.editor}
+            formats={formats}
+          />
+        </div>
+        <div className={styles.editor_section}>
+          <h1>{title}</h1>
+          <br></br>
+          <br></br>
+          <div dangerouslySetInnerHTML={{ __html: content }}></div>
+        </div>
+      </div>
     </div>
   )
+}
+
+{
+  /* <label>
+비공개
+<input
+  type="checkbox"
+  checked={publicOption}
+  onChange={() => setPublicOption((prev) => !prev)}
+/>
+</label>
+<button onClick={write}>글쓰기</button> */
 }

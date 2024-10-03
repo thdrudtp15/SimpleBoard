@@ -1,0 +1,8 @@
+.write_title {
+  width: 100%;
+  font-size: var(--font-size-large);
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
