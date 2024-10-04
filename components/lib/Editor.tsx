@@ -13,7 +13,6 @@ const modules = {
     ['link'],
     [{ header: 1 }, { header: 2 }], // custom button values
     [{ list: 'ordered' }, { list: 'bullet' }],
-    [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
     [{ direction: 'rtl' }], // text direction
     [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -66,30 +65,28 @@ export default function Editor() {
   }
 
   return (
-    <div>
-      <div className={styles.editor_input__title}>
-        <label>
-          <Input style="write_title" value={title} onChange={setTitle} />
-        </label>
+    <div className={styles.editor_container}>
+      <div className={`${styles.editor_section} ${styles.section_write}`}>
+        <div className={styles.editor_input__title}>
+          <label>
+            <Input style="write_title" value={title} onChange={setTitle} />
+          </label>
+        </div>
+        <ReactQuill
+          modules={modules}
+          theme="snow"
+          value={content}
+          onChange={setContent}
+          placeholder="글 작성해주세요"
+          className={styles.editor}
+          formats={formats}
+        />
       </div>
-      <div className={styles.editor_container}>
-        <div className={styles.editor_section}>
-          <ReactQuill
-            modules={modules}
-            theme="snow"
-            value={content}
-            onChange={setContent}
-            placeholder="글 작성해주세요"
-            className={styles.editor}
-            formats={formats}
-          />
-        </div>
-        <div className={styles.editor_section}>
-          <h1>{title}</h1>
-          <br></br>
-          <br></br>
-          <div dangerouslySetInnerHTML={{ __html: content }}></div>
-        </div>
+      <div className={`${styles.editor_section} ${styles.section_prv}`}>
+        <h1>{title}</h1>
+        <br></br>
+        <br></br>
+        <div dangerouslySetInnerHTML={{ __html: content }}></div>
       </div>
     </div>
   )

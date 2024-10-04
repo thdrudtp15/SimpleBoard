@@ -2,6 +2,8 @@ import { connectDB } from '@/db/database'
 import { MongoClient, ObjectId } from 'mongodb'
 
 import { postType } from '@/types/types'
+import styles from './page.module.css'
+
 import dynamic from 'next/dynamic'
 const ListItem = dynamic(() => import('./ListItem'))
 
@@ -18,7 +20,7 @@ export default async function Home() {
   )
 
   return (
-    <div>
+    <div className={styles.list_container}>
       <ListItem data={data} />
     </div>
   )

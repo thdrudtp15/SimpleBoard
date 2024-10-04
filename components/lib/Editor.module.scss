@@ -1,14 +1,18 @@
-.editor_input__title {
-  padding-bottom: 24px;
-}
-
 .editor_container {
   display: flex;
   gap: 8px;
+  min-height: calc(100vh - 60px);
 }
-
+.editor_input__title {
+  padding-bottom: 24px;
+}
 .editor_section {
   width: 50%;
+  padding: var(--content-padding-base);
 }
-.editor {
+
+.section_write {
+}
+.section_prv {
+  background-color: #e5e5e550;
 }
