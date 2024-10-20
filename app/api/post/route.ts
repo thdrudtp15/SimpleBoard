@@ -7,12 +7,10 @@ import { MongoClient } from 'mongodb'
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions)
-  const body = await req.json()
-
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
-
+  const body = await req.json()
   body.activate = true
   body.date = new Date()
   body.images = []
