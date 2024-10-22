@@ -29,7 +29,7 @@ const formats = [
 export default function Editor() {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
-  const [publicOption, setPublicOption] = useState<boolean>(false)
+  const [publicOption, setPublicOption] = useState<boolean>(false) // 공개 옵션
   const quillRef = useRef<ReactQuill | null>(null)
 
   const modules = useMemo(() => {
@@ -83,6 +83,10 @@ export default function Editor() {
             // 6. 추가적으로 배열에 이미지 경로를 넣어서 첫 번째 이미지가 배너 디자인으로 나타나게 하면 될 거 같다.
 
             // 사이즈 조정 필요할까?
+            // 이미지 지울 때 AWS 삭제 요청?
+            // 게시글 편집 기능 어케..?
+            // 파일 구조도 손 봐야 함.
+            // 컴포넌트는 원뎁스로
             // 진짜 디자인 쓰레기..;
             // 다른 사이트 카피
           },
