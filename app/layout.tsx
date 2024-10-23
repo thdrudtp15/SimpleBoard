@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import Header from '@/components/layout/Header'
-import SideBar from '@/components/layout/SideBar'
+import Header from '@/components/Header'
 import 'react-quill/dist/quill.snow.css'
 
 const geistSans = localFont({

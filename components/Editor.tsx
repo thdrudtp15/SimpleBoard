@@ -4,7 +4,7 @@ import styles from './Editor.module.scss'
 import './ReactQuill.css'
 import ReactQuill from 'react-quill'
 import { useMemo, useRef, useState } from 'react'
-import Input from '../common/Input'
+import Input from './Input'
 import { getPresignedImg } from '@/utils/getPresignedImg'
 
 const formats = [

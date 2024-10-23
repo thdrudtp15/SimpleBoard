@@ -1,5 +1,4 @@
 export const getPresignedImg = async (src: File) => {
-  console.log(src, '버박')
   let file = src
   let url
   if (file) {
@@ -19,7 +18,6 @@ export const getPresignedImg = async (src: File) => {
         method: 'POST',
         body: formData,
       })
-      console.log(uploadResult, '업로드 리절트')
       if (uploadResult.ok) {
         url = uploadResult.url + `/` + filename
         return url
