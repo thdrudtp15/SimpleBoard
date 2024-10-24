@@ -20,7 +20,6 @@ export default async function Header() {
       <div className={styles.profile_box}>
         {session && (
           <>
-            <FaRegBell size={25} />
             <Image
               className={styles.profile_img}
               width={30}
