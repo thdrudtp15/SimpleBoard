@@ -2,10 +2,10 @@ import { connectDB } from '@/db/database'
 import { MongoClient, ObjectId } from 'mongodb'
 
 import { postType } from '@/types/types'
-import styles from './page.module.css'
+import styles from './page.module.scss'
 
 import dynamic from 'next/dynamic'
-const ListItem = dynamic(() => import('./ListItem'))
+const ListItem = dynamic(() => import('../components/ListItem'))
 
 export default async function Home() {
   const client: MongoClient = await connectDB

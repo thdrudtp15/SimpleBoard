@@ -1,0 +1,17 @@
+.ql-toolbar {
+  border: none !important;
+}
+.ql-container {
+  border: none !important;
+}
+.ql-snow {
+}
+.ql-syntax {
+  background-color: gray;
+  border-radius: 8px;
+  padding: 8px;
+  color: white;
+}
+img {
+  width: 100%;
+}
