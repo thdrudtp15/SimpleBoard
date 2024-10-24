@@ -101,7 +101,7 @@ export default function Editor() {
                   const range = editor?.getSelection()
                   alert(range?.index)
                   console.log(src)
-                  if (range?.index) {
+                  if (typeof range?.index === 'number') {
                     editor.insertEmbed(
                       range.index,
                       'image',
