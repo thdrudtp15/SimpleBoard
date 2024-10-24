@@ -16,7 +16,7 @@ export default async function Page(props: { params: { id: string } }) {
     <div>
       <h1>{result?.title}</h1>
       <Content result={result} />
-      <Comment id={props.params.id} />
+      {/* <Comment id={props.params.id} /> */}
     </div>
   )
 }

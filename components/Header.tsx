@@ -18,17 +18,15 @@ export default async function Header() {
         <Link href={'/suggestions'}>문의</Link>
       </div>
       <div className={styles.profile_box}>
-        {session && (
-          <>
-            <Image
-              className={styles.profile_img}
-              width={30}
-              height={30}
-              src={session?.user?.image as string}
-              alt="11"
-            />
-          </>
-        )}
+        {/* {session && (
+          <Image
+            className={styles.profile_img}
+            width={30}
+            height={30}
+            src={session?.user?.image as string}
+            alt="11"
+          />
+        )} */}
         <p className={styles.profile_name}>{session?.user?.name}</p>
         <LoginBtn session={session} />
       </div>

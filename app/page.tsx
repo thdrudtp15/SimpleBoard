@@ -16,6 +16,7 @@ export default async function Home() {
       ({
         ...item,
         _id: item._id.toString(),
+        date: item.date.toLocaleDateString(),
       } as postType),
   )
 

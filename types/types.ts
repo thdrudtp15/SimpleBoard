@@ -4,7 +4,7 @@ export type postType = {
   title: string
   activate: boolean
   content: string
-  date: Date
+  date: string
   images: string[]
   public: boolean
   author: string
