@@ -25,7 +25,7 @@ export const getPresignedImg = async (src: File) => {
         throw new Error('이미지 업로드 중 에러 발생!')
       }
     } catch (e) {
-      alert(e)
+      return false
     }
   }
 }

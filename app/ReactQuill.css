@@ -15,3 +15,7 @@
 img {
   width: 100%;
 }
+.blockquote {
+  padding: 20px;
+  border-left: 8px solid green !important;
+}

@@ -13,9 +13,10 @@ export default async function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.link_box}>
-        <Link href={'/'}>로고</Link>
+        <Link href={'/'} style={{ fontWeight: 'bold' }}>
+          Blogs
+        </Link>
         <Link href={'/write'}>글쓰기</Link>
-        <Link href={'/suggestions'}>문의</Link>
       </div>
       <div className={styles.profile_box}>
         {/* {session && (

@@ -2,6 +2,7 @@ import { connectDB } from '@/db/database'
 import { MongoClient, ObjectId } from 'mongodb'
 import Comment from './Comment'
 import Content from './Content'
+import styles from './page.module.scss'
 
 export default async function Page(props: { params: { id: string } }) {
   console.log(props.params.id)
@@ -13,7 +14,7 @@ export default async function Page(props: { params: { id: string } }) {
     .findOne({ _id: new ObjectId(props.params.id) })
 
   return (
-    <div>
+    <div className={styles.post_container}>
       <h1>{result?.title}</h1>
       <Content result={result} />
       {/* <Comment id={props.params.id} /> */}

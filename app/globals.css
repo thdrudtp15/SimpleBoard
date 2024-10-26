@@ -16,6 +16,7 @@
   --content-padding-small: 8px;
   --content-padding-base: 16px;
   --content-padding-large: 24px;
+  --content-max-width: 860px;
 }
 @import 'react-quill/dist/quill.snow.css';
 @media (prefers-color-scheme: dark) {

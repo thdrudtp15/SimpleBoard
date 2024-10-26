@@ -1,14 +1,11 @@
 .editor_container {
-  display: flex;
-  gap: 8px;
-  min-height: calc(100vh - 60px);
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  margin-top: 45px;
 }
 .editor_input__title {
   padding-bottom: 24px;
-}
-.editor_section {
-  width: 50%;
-  padding: var(--content-padding-base);
 }
 
 .section_write {

@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Input from './Input'
 import { getPresignedImg } from '@/utils/getPresignedImg'
+import '../app/ReactQuill.css'
 
 const formats = [
   'font',
@@ -41,9 +42,7 @@ export default function Editor() {
           [{ header: 1 }, { header: 2 }], // custom button values
           [{ list: 'ordered' }, { list: 'bullet' }],
           [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
-          [{ header: [1, 2, 3, 4, 5, 6, false] }],
           [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-          [{ align: [] }],
           ['image'],
         ],
         handlers: {
@@ -59,7 +58,9 @@ export default function Editor() {
                   const editor = quillRef.current?.getEditor()
                   const range = editor?.getSelection()
                   const fileurl = await getPresignedImg(target.files[0])
-                  if (typeof range?.index === 'number') {
+                  if (!fileurl) {
+                    return
+                  } else if (typeof range?.index === 'number') {
                     const [data, length] = editor.getLine(range.index as number)
                     if (length !== 0) {
                       editor.insertText(range.index, '\n')
@@ -127,14 +128,13 @@ export default function Editor() {
           formats={formats}
           ref={quillRef}
         />
-        <button onClick={write}>작성</button>
       </div>
-      <div className={`${styles.editor_section} ${styles.section_prv}`}>
+      {/* <div className={`${styles.editor_section} ${styles.section_prv}`}>
         <h1>{title}</h1>
         <br></br>
         <br></br>
         <div dangerouslySetInnerHTML={{ __html: content }}></div>
-      </div>
+      </div> */}
     </div>
   )
 }
