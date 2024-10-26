@@ -3,12 +3,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 
 import { connectDB } from '@/db/database'
-import { MongoClient } from 'mongodb'
+import { MongoClient, ObjectId } from 'mongodb'
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions)
   if (!session) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    return NextResponse.json({ error: '로그인 해주세요' }, { status: 401 })
   }
   const body = await req.json()
   body.activate = true
@@ -27,4 +27,27 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ status: 200 })
+}
+
+export async function GET(req: NextRequest) {
+  const session = await getServerSession(authOptions)
+  console.log(session)
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  const id = req.nextUrl.searchParams.get('id')
+  try {
+    const client: MongoClient = await connectDB
+    const db = client.db('simple_board')
+    const result: { acknowledged: boolean; deletedCount: number } = await db
+      .collection('post')
+      .deleteOne({ _id: new ObjectId(id?.toString()) })
+    if (result.deletedCount !== 1) {
+      throw new Error()
+    } else {
+      return NextResponse.redirect(new URL('/', 'http://localhost:3000'))
+    }
+  } catch (e) {
+    return NextResponse.json({ error: 'Server Error' }, { status: 500 })
+  }
 }

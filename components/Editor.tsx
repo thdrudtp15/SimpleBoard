@@ -6,6 +6,10 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import Input from './Input'
 import { getPresignedImg } from '@/utils/getPresignedImg'
 import '../app/ReactQuill.css'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css'
+import { error, success } from '@/utils/toast'
+import { useRouter } from 'next/navigation'
 
 const formats = [
   'font',
@@ -30,7 +34,9 @@ export default function Editor() {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
   const [publicOption, setPublicOption] = useState<boolean>(false) // 공개 옵션
+
   const quillRef = useRef<ReactQuill | null>(null)
+  const router = useRouter()
 
   const modules = useMemo(() => {
     return {
@@ -59,6 +65,7 @@ export default function Editor() {
                   const range = editor?.getSelection()
                   const fileurl = await getPresignedImg(target.files[0])
                   if (!fileurl) {
+                    error('이미지 업로드 중 에러 발생')
                     return
                   } else if (typeof range?.index === 'number') {
                     const [data, length] = editor.getLine(range.index as number)
@@ -105,36 +112,32 @@ export default function Editor() {
         publicOption,
       }),
     })
-    if (_res.status === 500) {
-      alert('에러 발생')
+    if (_res.status === 200) {
+      router.push('/')
+    } else {
+      error(_res.statusText)
     }
   }
 
   return (
     <div className={styles.editor_container}>
-      <div className={`${styles.editor_section} ${styles.section_write}`}>
-        <div className={styles.editor_input__title}>
-          <label>
-            <Input style="write_title" value={title} onChange={setTitle} />
-          </label>
-        </div>
-        <ReactQuill
-          modules={modules}
-          theme="snow"
-          value={content}
-          onChange={setContent}
-          placeholder="글 작성해주세요"
-          className={styles.editor}
-          formats={formats}
-          ref={quillRef}
-        />
+      <ToastContainer />
+      <div className={styles.editor_input__title}>
+        <label>
+          <Input style="write_title" value={title} onChange={setTitle} />
+        </label>
       </div>
-      {/* <div className={`${styles.editor_section} ${styles.section_prv}`}>
-        <h1>{title}</h1>
-        <br></br>
-        <br></br>
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
-      </div> */}
+      <ReactQuill
+        modules={modules}
+        theme="snow"
+        value={content}
+        onChange={setContent}
+        placeholder="글 작성해주세요"
+        className={styles.editor}
+        formats={formats}
+        ref={quillRef}
+      />
+      <button onClick={write}>작성</button>
     </div>
   )
 }

@@ -5,7 +5,9 @@ import { postType } from '@/types/types'
 import styles from './page.module.scss'
 
 import dynamic from 'next/dynamic'
-const ListItem = dynamic(() => import('../components/ListItem'))
+import defaultCodeImage from '../assets/imges/defaultImage_code.webp'
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default async function Home() {
   const client: MongoClient = await connectDB
@@ -22,7 +24,26 @@ export default async function Home() {
 
   return (
     <div className={styles.list_container}>
-      <ListItem data={data} />
+      {data?.map((item) => (
+        <Link
+          className={styles.list_box}
+          href={`/post/${item._id}`}
+          key={item._id}
+        >
+          <div className={styles.image_box}>
+            <Image
+              className={styles.image}
+              src={defaultCodeImage}
+              alt="default"
+            ></Image>
+          </div>
+          <div className={styles.content_box}>
+            <h3>{item.title}</h3>
+            <p>{item.date}</p>
+            <p>{item.author}</p>
+          </div>
+        </Link>
+      ))}
     </div>
   )
 }
