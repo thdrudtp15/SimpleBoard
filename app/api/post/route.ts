@@ -1,9 +1,9 @@
-import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
-
-import { connectDB } from '@/db/database'
 import { MongoClient, ObjectId } from 'mongodb'
+
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { connectDB } from '@/db/database'
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions)

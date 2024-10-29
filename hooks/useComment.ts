@@ -1,8 +1,22 @@
-import { commentType } from '@/types/types'
 import { useEffect, useState } from 'react'
+
+import { commentType } from '@/types/types'
 
 export function useComment(id: string, comment: { comment: string }) {
   const [commentList, setCommentList] = useState<commentType[]>([])
+
+  /**
+   * 댓글 리스트 가져오기
+   */
+  const getCommentList = async () => {
+    const res = await fetch(`/api/comment?id=${id}`, {
+      method: 'GET',
+    })
+    if (res.status === 200) {
+      const data = await res.json()
+      setCommentList(data.data)
+    }
+  }
 
   /**
    * 댓글 작성하기
@@ -20,19 +34,6 @@ export function useComment(id: string, comment: { comment: string }) {
       getCommentList()
     } else {
       throw new Error(data.error)
-    }
-  }
-
-  /**
-   * 댓글 리스트 가져오기
-   */
-  const getCommentList = async () => {
-    const res = await fetch(`/api/comment?id=${id}`, {
-      method: 'GET',
-    })
-    if (res.status === 200) {
-      let data = await res.json()
-      setCommentList(data.data)
     }
   }
 

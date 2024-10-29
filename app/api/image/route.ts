@@ -19,6 +19,5 @@ export async function GET(req: NextRequest) {
     Conditions: [['content-length-range', 0, 1048576]],
   })
 
-  console.log(fileKey, url, '서버 일해요')
   return NextResponse.json({ data: url, status: 200 })
 }

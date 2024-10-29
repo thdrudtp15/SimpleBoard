@@ -1,22 +1,21 @@
-import styles from './Header.module.scss'
-
-import Image from 'next/image'
-import { FaRegBell } from 'react-icons/fa'
-import { getServerSession, Session } from 'next-auth'
-import LoginBtn from './LoginBtn'
-import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { getServerSession } from 'next-auth'
 import Link from 'next/link'
 
-export default async function Header() {
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
+
+import styles from './Header.module.scss'
+import LoginBtn from './LoginBtn'
+
+const Header = async () => {
   const session = await getServerSession(authOptions)
 
   return (
     <header className={styles.header}>
       <div className={styles.link_box}>
-        <Link href={'/'} style={{ fontWeight: 'bold' }}>
+        <Link href="/" style={{ fontWeight: 'bold' }}>
           Blogs
         </Link>
-        <Link href={'/write'}>글쓰기</Link>
+        <Link href="/write">글쓰기</Link>
       </div>
       <div className={styles.profile_box}>
         {/* {session && (
@@ -34,3 +33,5 @@ export default async function Header() {
     </header>
   )
 }
+
+export default Header

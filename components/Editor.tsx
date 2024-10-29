@@ -1,15 +1,17 @@
 'use client'
 
-import styles from './Editor.module.scss'
-import ReactQuill from 'react-quill'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import Input from './Input'
-import { getPresignedImg } from '@/utils/getPresignedImg'
 import '../app/ReactQuill.css'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.min.css'
-import { error, success } from '@/utils/toast'
+import ReactQuill from 'react-quill'
+import { ToastContainer } from 'react-toastify'
+import { useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import 'react-toastify/dist/ReactToastify.min.css'
+
+import { getPresignedImg } from '@/utils/getPresignedImg'
+import { error, success } from '@/utils/toast'
+
+import styles from './Editor.module.scss'
+import Input from './Input'
 
 const formats = [
   'font',
@@ -30,7 +32,7 @@ const formats = [
   'image',
 ]
 
-export default function Editor() {
+const Editor = () => {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
   const [publicOption, setPublicOption] = useState<boolean>(false) // 공개 옵션
@@ -52,7 +54,7 @@ export default function Editor() {
           ['image'],
         ],
         handlers: {
-          image: function () {
+          image() {
             const input = document.createElement('input')
             input.setAttribute('type', 'file')
             input.setAttribute('accept', 'image/*')
@@ -64,19 +66,23 @@ export default function Editor() {
                   const editor = quillRef.current?.getEditor()
                   const range = editor?.getSelection()
                   const fileurl = await getPresignedImg(target.files[0])
-                  if (!fileurl) {
-                    error('이미지 업로드 중 에러 발생')
-                    return
-                  } else if (typeof range?.index === 'number') {
-                    const [data, length] = editor.getLine(range.index as number)
+
+                  if (fileurl && typeof range?.index === 'number') {
+                    const [_data, length] = editor.getLine(
+                      range.index as number,
+                    )
                     if (length !== 0) {
                       editor.insertText(range.index, '\n')
                     }
                     editor.insertEmbed(range.index, 'image', fileurl)
                     editor.setSelection((range.index + 2) as any)
+                  } else {
+                    error('이미지 업로드 중 에러 발생')
+                    return null
                   }
                 }
               }
+              return null
             })
             input.click()
 
@@ -123,9 +129,7 @@ export default function Editor() {
     <div className={styles.editor_container}>
       <ToastContainer />
       <div className={styles.editor_input__title}>
-        <label>
-          <Input style="write_title" value={title} onChange={setTitle} />
-        </label>
+        <Input styleSet="write_title" value={title} onChange={setTitle} />
       </div>
       <ReactQuill
         modules={modules}
@@ -137,13 +141,14 @@ export default function Editor() {
         formats={formats}
         ref={quillRef}
       />
-      <button onClick={write}>작성</button>
+      <button type="button" onClick={write}>
+        작성
+      </button>
     </div>
   )
 }
 
-{
-  /* <label>
+/* <label>
 비공개
 <input
   type="checkbox"
@@ -152,4 +157,5 @@ export default function Editor() {
 />
 </label>
 <button onClick={write}>글쓰기</button> */
-}
+
+export default Editor

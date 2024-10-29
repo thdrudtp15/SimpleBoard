@@ -1,10 +1,10 @@
 export const getPresignedImg = async (src: File) => {
-  let file = src
+  const file = src
   let url
   if (file) {
     try {
-      let filename = encodeURIComponent(src?.name)
-      let res: { fields: any; url: string } | any = await fetch(
+      const filename = encodeURIComponent(src?.name)
+      const res: { fields: any; url: string } | any = await fetch(
         `/api/image?file=${filename}`,
       )
       const resJson = await res.json()
@@ -14,18 +14,18 @@ export const getPresignedImg = async (src: File) => {
           formData.append(key, value as string)
         },
       )
-      let uploadResult = await fetch(resJson.data.url, {
+      const uploadResult = await fetch(resJson.data.url, {
         method: 'POST',
         body: formData,
       })
       if (uploadResult.ok) {
-        url = uploadResult.url + `/` + filename
+        url = `${uploadResult.url}/${filename}`
         return url
-      } else {
-        throw new Error('이미지 업로드 중 에러 발생!')
       }
+      throw new Error('이미지 업로드 중 에러 발생!')
     } catch (e) {
       return false
     }
   }
+  return null
 }

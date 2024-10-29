@@ -1,24 +1,25 @@
 import { Dispatch, SetStateAction } from 'react'
+
 import stlyes from './Input.module.scss'
 
 type TextInputProps = {
-  style: 'text' | 'write_title'
+  styleSet: 'text' | 'write_title'
   value: string
   onChange: Dispatch<SetStateAction<string>>
 }
 
 type CheckboxInputType = {
-  style: 'checkbox'
+  styleSet: 'checkbox'
   value: boolean
   onChange: Dispatch<SetStateAction<boolean>>
 }
 
 type propsType = TextInputProps | CheckboxInputType
 
-export default function Input(props: propsType) {
-  const { style, value, onChange } = props || {}
+const Input = (props: propsType) => {
+  const { styleSet, value, onChange } = props || {}
 
-  if (style === 'write_title') {
+  if (styleSet === 'write_title') {
     return (
       <input
         className={stlyes.write_title}
@@ -28,25 +29,29 @@ export default function Input(props: propsType) {
         onChange={(e) => onChange(e.target.value as string)}
       />
     )
-  } else if (style === 'text') {
-    return (
-      <input
-        className={stlyes.text}
-        type="text"
-        value={value as string}
-        onChange={(e) => onChange(e.target.value as string)}
-      />
-    )
-  } else if (style === 'checkbox') {
-    return (
-      <input
-        className={stlyes.checkbox}
-        type="checkbox"
-        checked={value as boolean}
-        onChange={() =>
-          onChange((prev) => (typeof prev === 'boolean' ? !prev : false))
-        }
-      />
-    )
+    // } else if (styleSet === 'text') {
+    //   return (
+    //     <input
+    //       className={stlyes.text}
+    //       type="text"
+    //       value={value as string}
+    //       onChange={(e) => onChange(e.target.value as string)}
+    //     />
+    //   )
+    // } else if (styleSet === 'checkbox') {
+    //   return (
+    //     <input
+    //       className={stlyes.checkbox}
+    //       type="checkbox"
+    //       checked={value as boolean}
+    //       onChange={() =>
+    //         onChange((prev) => (typeof prev === 'boolean' ? !prev : false))
+    //       }
+    //     />
+    //   )
+    // }
   }
+  return null
 }
+
+export default Input

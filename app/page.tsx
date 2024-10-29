@@ -1,15 +1,15 @@
-import { connectDB } from '@/db/database'
-import { MongoClient, ObjectId } from 'mongodb'
-
-import { postType } from '@/types/types'
-import styles from './page.module.scss'
-
 import dynamic from 'next/dynamic'
-import defaultCodeImage from '../assets/imges/defaultImage_code.webp'
 import Link from 'next/link'
 import Image from 'next/image'
+import { MongoClient, ObjectId } from 'mongodb'
 
-export default async function Home() {
+import { connectDB } from '@/db/database'
+import { postType } from '@/types/types'
+
+import styles from './page.module.scss'
+import defaultCodeImage from '../assets/imges/defaultImage_code.webp'
+
+const Home = async () => {
   const client: MongoClient = await connectDB
   const db = client.db('simple_board')
   const result = await db.collection('post').find().toArray()
@@ -35,7 +35,7 @@ export default async function Home() {
               className={styles.image}
               src={defaultCodeImage}
               alt="default"
-            ></Image>
+            />
           </div>
           <div className={styles.content_box}>
             <h3>{item.title}</h3>
@@ -47,3 +47,5 @@ export default async function Home() {
     </div>
   )
 }
+
+export default Home

@@ -1,13 +1,12 @@
+import { MongoClient, ObjectId } from 'mongodb'
 import { NextRequest, NextResponse } from 'next/server'
-import { connectDB } from '@/db/database'
-import { MongoClient } from 'mongodb'
 import { getServerSession } from 'next-auth'
+
+import { connectDB } from '@/db/database'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
-import { ObjectId } from 'mongodb'
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions)
-
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized', status: 401 })
   }
@@ -24,11 +23,10 @@ export async function POST(req: NextRequest) {
   const db = client.db('simple_board')
   const result = await db.collection('comment').insertOne(body)
 
-  if (result) {
-    return NextResponse.json({ data: '성공', status: 200 })
-  } else {
+  if (!result) {
     return NextResponse.json({ error: 'Error', status: 500 })
   }
+  return NextResponse.json({ data: '성공', status: 200 })
 }
 
 export async function GET(req: NextRequest) {
