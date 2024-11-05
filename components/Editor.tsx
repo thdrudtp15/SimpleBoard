@@ -11,6 +11,7 @@ import { getPresignedImg } from '@/utils/getPresignedImg'
 import { error, success } from '@/utils/toast'
 
 import styles from './Editor.module.scss'
+import 'react-quill/dist/quill.snow.css'
 import Input from './Input'
 
 const formats = [
@@ -61,7 +62,6 @@ const Editor = () => {
             input.addEventListener('change', async (event) => {
               const target = event.target as HTMLInputElement
               if (target.files && target.files[0]) {
-                console.log(target.files[0])
                 if (quillRef.current) {
                   const editor = quillRef.current?.getEditor()
                   const range = editor?.getSelection()

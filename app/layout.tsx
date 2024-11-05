@@ -3,18 +3,15 @@ import React from 'react'
 
 import type { Metadata } from 'next'
 
-import 'react-quill/dist/quill.snow.css'
 import './globals.css'
 
-import Header from '@/components/Header'
-
 const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
+  src: '../public/fonts/GeistVF.woff',
   variable: '--font-geist-sans',
   weight: '100 900',
 })
 const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
+  src: '../public/fonts/GeistMonoVF.woff',
   variable: '--font-geist-mono',
   weight: '100 900',
 })
@@ -32,10 +29,7 @@ const RootLayout = async ({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Header />
-        <div className="inner_container">
-          <div className="content_container">{children}</div>
-        </div>
+        {children}
       </body>
     </html>
   )

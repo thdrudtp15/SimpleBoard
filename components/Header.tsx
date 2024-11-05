@@ -11,25 +11,16 @@ const Header = async () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.link_box}>
+      <div className={styles.header_content}>
         <Link href="/" style={{ fontWeight: 'bold' }}>
-          Blogs
+          LOGOS
         </Link>
-        <Link href="/write">글쓰기</Link>
+        {/* <Link href="/write">글쓰기</Link> */}
       </div>
-      <div className={styles.profile_box}>
-        {/* {session && (
-          <Image
-            className={styles.profile_img}
-            width={30}
-            height={30}
-            src={session?.user?.image as string}
-            alt="11"
-          />
-        )} */}
+      {/* <div className={styles.profile_box}>
         <p className={styles.profile_name}>{session?.user?.name}</p>
         <LoginBtn session={session} />
-      </div>
+      </div> */}
     </header>
   )
 }

@@ -1,0 +1,25 @@
+.main_banner__container {
+  height: 100vh;
+  background-image: url('../public/images/MainBanner.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_banner__text {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+  text-align: center;
+  width: 100%;
+}
+.main_banner__text_static {
+  font-size: 48px;
+  color: rgba(255, 127, 80, 0.466);
+}
+.main_banner__text_dynamic {
+  font-size: 74px;
+  color: rgb(207, 177, 138);
+}

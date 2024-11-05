@@ -22,7 +22,6 @@ export async function POST(req: NextRequest) {
     const db = client.db('simple_board')
     const result: unknown = await db.collection('post').insertOne(body)
   } catch (e) {
-    console.log('서버에러')
     return NextResponse.json({ error: 'Server Error' }, { status: 500 })
   }
 
@@ -31,7 +30,6 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions)
-  console.log(session)
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }

@@ -1,29 +1,29 @@
-.list_container {
-  padding: var(--content-padding-large);
-  display: grid;
-  grid-template-columns: repeat(6, 2fr);
-  gap: 16px;
-}
+// .list_container {
+//   padding: var(--content-padding-large);
+//   display: grid;
+//   grid-template-columns: repeat(6, 2fr);
+//   gap: 16px;
+// }
 
-.list_box {
-  width: 100%;
-  border-radius: var(--padding-around-small);
-  cursor: default;
-  box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.1);
-  height: 360px;
-  overflow: hidden;
-}
+// .list_box {
+//   width: 100%;
+//   border-radius: var(--padding-around-small);
+//   cursor: default;
+//   box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.1);
+//   height: 360px;
+//   overflow: hidden;
+// }
 
-.image_box {
-  height: 65%;
-}
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+// .image_box {
+//   height: 65%;
+// }
+// .image {
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+// }
 
-.content_box {
-  height: 35%;
-  padding: var(--padding-around-small);
-}
+// .content_box {
+//   height: 35%;
+//   padding: var(--padding-around-small);
+// }

@@ -1,13 +1,11 @@
-import dynamic from 'next/dynamic'
-import Link from 'next/link'
-import Image from 'next/image'
-import { MongoClient, ObjectId } from 'mongodb'
+import { MongoClient } from 'mongodb'
 
 import { connectDB } from '@/db/database'
 import { postType } from '@/types/types'
+import MainBanner from '@/containers/MainBanner'
+import Studies from '@/containers/Studies'
 
-import styles from './page.module.scss'
-import defaultCodeImage from '../assets/imges/defaultImage_code.webp'
+import Header from '@/components/Header'
 
 const Home = async () => {
   const client: MongoClient = await connectDB
@@ -23,29 +21,28 @@ const Home = async () => {
   )
 
   return (
-    <div className={styles.list_container}>
-      {data?.map((item) => (
-        <Link
-          className={styles.list_box}
-          href={`/post/${item._id}`}
-          key={item._id}
-        >
-          <div className={styles.image_box}>
-            <Image
-              className={styles.image}
-              src={defaultCodeImage}
-              alt="default"
-            />
-          </div>
-          <div className={styles.content_box}>
-            <h3>{item.title}</h3>
-            <p>{item.date}</p>
-            <p>{item.author}</p>
-          </div>
-        </Link>
-      ))}
-    </div>
+    // <div className={styles.list_container}>
+    <>
+      <Header />
+      <MainBanner />
+      <Studies />
+    </>
+    // </div>
   )
 }
 
 export default Home
+
+// {/* {data?.map((item) => (
+//       <Link
+//         className={styles.list_box}
+//         href={`/post/${item._id}`}
+//         key={item._id}
+//       >
+//         <div className={styles.content_box}>
+//           <h3>{item.title}</h3>
+//           <p>{item.date}</p>
+//           <p>{item.author}</p>
+//         </div>
+//       </Link>
+//     ))} */}
