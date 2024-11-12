@@ -13,9 +13,6 @@ export async function POST(req: NextRequest) {
   const body = await req.json()
   body.activate = true
   body.date = new Date()
-  body.images = []
-  body.public = body.publicOption
-  body.author = session?.user?.name
 
   try {
     const client: MongoClient = await connectDB
@@ -37,10 +34,13 @@ export async function GET(req: NextRequest) {
   try {
     const client: MongoClient = await connectDB
     const db = client.db('simple_board')
-    const result: { acknowledged: boolean; deletedCount: number } = await db
+    const result: { acknowledged: boolean } = await db
       .collection('post')
-      .deleteOne({ _id: new ObjectId(id?.toString()) })
-    if (result.deletedCount !== 1) {
+      .updateOne(
+        { _id: new ObjectId(id?.toString()) },
+        { $set: { activate: false } },
+      )
+    if (!result.acknowledged) {
       throw new Error()
     } else {
       return NextResponse.redirect(new URL('/', 'http://localhost:3000'))

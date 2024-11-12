@@ -1,6 +1,7 @@
 import { MongoClient, ObjectId } from 'mongodb'
 
 import { connectDB } from '@/db/database'
+import { postType } from '@/types/types'
 
 // import Comment from './Comment'
 import Content from './Content'
@@ -12,6 +13,15 @@ const Page = async (props: { params: { id: string } }) => {
   const result = await db
     .collection('post')
     .findOne({ _id: new ObjectId(props?.params.id) })
+
+  // let data
+  // if (result) {
+  //   data = {
+  //     ...result,
+  //     _id: result._id.toString(),
+  //     date: result.date.toLocaleDateString(),
+  //   } as postType
+  // }
 
   return (
     <div className={styles.post_container}>

@@ -22,7 +22,7 @@ const Content = ({ result }: { result: any }) => {
         const tagsInner = tag.innerHTML
         tag.innerHTML = ''
         const codeTag = document.createElement('code')
-        codeTag.classList.add('language-javascript')
+        codeTag.classList.add('language-jsx')
         codeTag.innerHTML = tagsInner
         tag.appendChild(codeTag)
       })

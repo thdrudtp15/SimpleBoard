@@ -36,7 +36,7 @@ const formats = [
 const Editor = () => {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
-  const [publicOption, setPublicOption] = useState<boolean>(false) // 공개 옵션
+  const [category, setCategory] = useState<string>('')
 
   const quillRef = useRef<ReactQuill | null>(null)
   const router = useRouter()
@@ -115,7 +115,7 @@ const Editor = () => {
       body: JSON.stringify({
         title,
         content,
-        publicOption,
+        category,
       }),
     })
     if (_res.status === 200) {
@@ -131,6 +131,18 @@ const Editor = () => {
       <div className={styles.editor_input__title}>
         <Input styleSet="write_title" value={title} onChange={setTitle} />
       </div>
+      <details>
+        <summary>{category || '카테고리를 선택해주세요'}</summary>
+        {['JavaScript', 'HTML&CSS', 'REACT'].map((item) => (
+          <button
+            type="button"
+            key={`${item}`}
+            onClick={() => setCategory(item)}
+          >
+            {item}
+          </button>
+        ))}
+      </details>
       <ReactQuill
         modules={modules}
         theme="snow"
