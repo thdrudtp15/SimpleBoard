@@ -5,9 +5,7 @@ export type postType = {
   activate: boolean
   content: string
   date: string
-  images: string[]
-  public: boolean
-  author: string
+  category: string
 }
 
 export type commentType = {

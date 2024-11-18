@@ -1,6 +1,6 @@
 'use client'
 
-import '../app/ReactQuill.css'
+import '../../app/ReactQuill.css'
 import ReactQuill from 'react-quill'
 import { ToastContainer } from 'react-toastify'
 import { useMemo, useRef, useState } from 'react'
@@ -9,10 +9,11 @@ import 'react-toastify/dist/ReactToastify.min.css'
 
 import { getPresignedImg } from '@/utils/getPresignedImg'
 import { error, success } from '@/utils/toast'
+import { categories } from '@/constants/category'
 
 import styles from './Editor.module.scss'
 import 'react-quill/dist/quill.snow.css'
-import Input from './Input'
+import Input from '../../components/Input'
 
 const formats = [
   'font',
@@ -32,6 +33,8 @@ const formats = [
   'link',
   'image',
 ]
+
+const categoryName = categories.map((category) => category.name)
 
 const Editor = () => {
   const [title, setTitle] = useState<string>('')
@@ -133,7 +136,7 @@ const Editor = () => {
       </div>
       <details>
         <summary>{category || '카테고리를 선택해주세요'}</summary>
-        {['JavaScript', 'HTML&CSS', 'REACT'].map((item) => (
+        {categoryName.map((item) => (
           <button
             type="button"
             key={`${item}`}
