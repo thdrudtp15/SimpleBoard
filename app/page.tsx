@@ -8,10 +8,8 @@ const Home = async () => {
   return (
     // <div className={styles.list_container}>
     <>
-      <Header />
       <MainBanner />
       <Studies />
-      <Footer />
     </>
     // </div>
   )

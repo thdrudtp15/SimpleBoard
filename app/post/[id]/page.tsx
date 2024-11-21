@@ -2,7 +2,6 @@ import { MongoClient, ObjectId } from 'mongodb'
 import { notFound } from 'next/navigation'
 
 import { connectDB } from '@/db/database'
-import { postType } from '@/types/types'
 import { categories } from '@/constants/category'
 
 // import Comment from './Comment'
@@ -23,13 +22,16 @@ const Page = async (props: { params: { id: string } }) => {
   type CategoryKeys = 'HTML' | 'CSS' | 'JAVA SCRIPT' | 'REACT'
 
   const codestyle = categories[result?.category as CategoryKeys]?.codestyle
+  // 오브젝트[키] 방식을 사용하려면 리터럴 타입으로 지정을 해줘야 한다ㅋ
 
   return (
-    <div className={styles.post_container}>
-      <p className={styles.post_title}>{result?.title}</p>
-      <Content result={result} codestyle={codestyle} />
-      {/* <Comment id={props.params.id} /> */}
-      {/* <form method="GET" action="/api/post">
+    <section className={styles.post_bg}>
+      <h2 className={styles.post_title}>{result?.title}</h2>
+
+      <div className={styles.post_container}>
+        <Content result={result} codestyle={codestyle} />
+        {/* <Comment id={props.params.id} /> */}
+        {/* <form method="GET" action="/api/post">
         <input
           type="hidden"
           value={result ? result._id.toString() : undefined}
@@ -39,7 +41,8 @@ const Page = async (props: { params: { id: string } }) => {
           삭제
         </button>
       </form> */}
-    </div>
+      </div>
+    </section>
   )
 }
 

@@ -6,10 +6,40 @@
 }
 .ql-syntax {
   background-color: rgb(44, 44, 44);
-  border-radius: 8px;
-  padding: 8px;
+  /* border-radius: 8px; */
+  padding: calc(var(--padding-around-large) + 12px) !important;
   color: white;
+  position: relative;
+  margin: 0px -36px !important;
 }
+
+[class^='language-']::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  padding: 4px;
+  color: black;
+}
+
+.ql-syntax .language-css::after {
+  content: 'CSS';
+
+  background-color: #264de4;
+}
+
+.ql-syntax .language-javascript::after {
+  content: 'JAVASCRIPT';
+  color: black;
+  background-color: #f7df1e;
+}
+
+.ql-syntax .language-jsx::after {
+  content: 'JSX';
+  color: black;
+  background-color: #61dafb;
+}
+
 img {
   width: 100%;
 }

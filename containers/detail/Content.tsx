@@ -26,8 +26,8 @@ const Content = ({ result, codestyle }: { result: any; codestyle: string }) => {
     }
   }, [])
 
-  const sanitizeContent = DOMPurify.sanitize(result.content)
+  // const sanitizeContent = DOMPurify?.sanitize(result.content)
 
-  return <div dangerouslySetInnerHTML={{ __html: sanitizeContent }} />
+  return <div dangerouslySetInnerHTML={{ __html: result.content }} />
 }
 export default Content

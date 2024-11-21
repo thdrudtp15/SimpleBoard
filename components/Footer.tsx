@@ -11,7 +11,6 @@ const Footer = async () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.profile_box}>
-        <p className={styles.profile_name}>{session?.user?.name}</p>
         <LoginBtn session={session} />
       </div>
     </footer>

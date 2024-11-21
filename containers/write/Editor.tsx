@@ -34,7 +34,9 @@ const formats = [
   'image',
 ]
 
-const categoryName = categories.map((category) => category.name)
+const categoryName = Object.keys(categories).map((item: string) => item)
+
+console.log(categoryName)
 
 const Editor = () => {
   const [title, setTitle] = useState<string>('')
