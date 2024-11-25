@@ -1,0 +1,20 @@
+// img {
+//   max-width: 500px;
+//   max-height: 500px;
+//   object-fit: cover;
+// }
+
+.quick {
+  display: flex;
+  flex-direction: column;
+  list-style: circle;
+}
+
+.H1 {
+  background-color: red;
+}
+.H2 {
+  background-color: blue;
+  padding-left: 24px;
+  color: white;
+}

@@ -11,6 +11,7 @@
   color: white;
   position: relative;
   margin: 0px -36px !important;
+  font-size: 18px !important;
 }
 
 [class^='language-']::after {
@@ -20,6 +21,7 @@
   font-size: 12px;
   padding: 4px;
   color: black;
+  letter-spacing: 1.5px;
 }
 
 .ql-syntax .language-css::after {
@@ -43,7 +45,15 @@
 img {
   width: 100%;
 }
-.blockquote {
-  padding: 20px;
-  border-left: 8px solid green !important;
+
+blockquote {
+  padding: 25px;
+  border-left: 0.25em solid #33a9dc !important;
+  background-color: rgba(51, 169, 220, 0.1);
+  color: rgba(0, 0, 0, 0.5);
+}
+
+ol,
+ul {
+  padding: 24px;
 }

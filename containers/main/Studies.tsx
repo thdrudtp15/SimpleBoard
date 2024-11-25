@@ -45,7 +45,7 @@ const Studies = async () => {
               <h3>{key}</h3>
             </section>
             <section className={styles.studies__content_box}>
-              <ul>
+              <ul className={styles.studies__ul}>
                 {data[key as CategoryKeys]?.map(
                   (study: postType, index: number) => (
                     <li key={study._id.toString()}>
@@ -54,7 +54,7 @@ const Studies = async () => {
                         href={`/post/${study._id}`}
                       >
                         <p className={styles.studies__content_number}>
-                          {index + 1}
+                          {index + 1}.
                         </p>
                         <p className={styles.studies__content_title}>
                           {study.title}

@@ -25,13 +25,15 @@ const Page = async (props: { params: { id: string } }) => {
   // 오브젝트[키] 방식을 사용하려면 리터럴 타입으로 지정을 해줘야 한다ㅋ
 
   return (
-    <section className={styles.post_bg}>
-      <h2 className={styles.post_title}>{result?.title}</h2>
-
-      <div className={styles.post_container}>
-        <Content result={result} codestyle={codestyle} />
-        {/* <Comment id={props.params.id} /> */}
-        {/* <form method="GET" action="/api/post">
+    <div className={`${styles.post_bg} ${styles[codestyle]}`}>
+      {/* <h1 className={styles.post_category}>{result.category}</h1>
+      <h2 className={styles.post_title}>{result?.title}</h2> */}
+      <div className={styles.post_wrapper}>
+        <header className={styles.post_header}>?</header>
+        <main className={styles.post_content}>
+          <Content result={result} codestyle={codestyle} />
+          {/* <Comment id={props.params.id} /> */}
+          {/* <form method="GET" action="/api/post">
         <input
           type="hidden"
           value={result ? result._id.toString() : undefined}
@@ -41,8 +43,9 @@ const Page = async (props: { params: { id: string } }) => {
           삭제
         </button>
       </form> */}
+        </main>
       </div>
-    </section>
+    </div>
   )
 }
 
