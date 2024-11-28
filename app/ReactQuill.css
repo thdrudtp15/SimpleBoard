@@ -12,21 +12,22 @@
   position: relative;
   margin: 0px -36px !important;
   font-size: 18px !important;
+  border-radius: 0px !important;
 }
 
-[class^='language-']::after {
+/* [class^='language-']::after {
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 12px;
+  font-size: 0.6rem;
+  font-weight: 500;
   padding: 4px;
   color: black;
   letter-spacing: 1.5px;
-}
+} */
 
-.ql-syntax .language-css::after {
+/* .ql-syntax .language-css::after {
   content: 'CSS';
-
   background-color: #264de4;
 }
 
@@ -36,11 +37,11 @@
   background-color: #f7df1e;
 }
 
-.ql-syntax .language-jsx::after {
-  content: 'JSX';
+.ql-syntax .language-tsx::after {
+  content: 'REACT';
   color: black;
   background-color: #61dafb;
-}
+} */
 
 img {
   width: 100%;
@@ -53,7 +54,7 @@ blockquote {
   color: rgba(0, 0, 0, 0.5);
 }
 
-ol,
-ul {
+.post-content ol,
+.post-content ul {
   padding: 24px;
 }

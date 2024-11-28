@@ -1,16 +1,20 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
-import styles from './Content.module.scss'
-import '../../app/ReactQuill.css'
+import React, { useLayoutEffect } from 'react'
 import Prism from 'prismjs'
-import 'prismjs/themes/prism-tomorrow.css'
+
+import styles from './Content.module.scss'
+
+import '../../app/ReactQuill.css'
+
+import 'prismjs/themes/prism-okaidia.css'
 import 'prismjs/components/prism-javascript.js'
 import 'prismjs/components/prism-css.js'
 import 'prismjs/components/prism-jsx.js'
+import 'prismjs/components/prism-tsx.js'
 
 const Content = ({ result, codestyle }: { result: any; codestyle: string }) => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const preTag = document.querySelectorAll('pre')
     if (preTag instanceof NodeList) {
       preTag.forEach((tag, _index) => {
@@ -23,14 +27,14 @@ const Content = ({ result, codestyle }: { result: any; codestyle: string }) => {
       })
       Prism.highlightAll()
     }
-
     const titles = document.querySelectorAll('h1, h2')
     const ulTag = document.querySelector('#quick')
+    const asideTag = document.querySelector('#quick-wrap')
 
-    if (titles && titles instanceof NodeList) {
+    if (titles.length > 0 && titles instanceof NodeList) {
       titles.forEach((tag) => {
-        let { tagName, innerHTML } = tag
-        let linkTag = document.createElement('a')
+        const { tagName, innerHTML } = tag
+        const linkTag = document.createElement('a')
         linkTag.innerHTML = innerHTML
         linkTag.href = `#${innerHTML}`
         tag.id = `${innerHTML}`
@@ -41,21 +45,27 @@ const Content = ({ result, codestyle }: { result: any; codestyle: string }) => {
         }
         ulTag?.appendChild(linkTag)
       })
+      asideTag?.classList.add(styles.displayed)
     }
-  }, [])
+  }, [codestyle])
 
   // 지금 이렇게 하는데,
   // 작성할 때 작성하는 방법은 없는지 찾아보자.
+  // 리랜더링 작업 수행 시 코드 하이라이트가 풀린다..!
+  // 이거 해결 좀..ㅋ
+
+  // 이미지 클릭 시 모달 및
+  // 텍스트 스타일링 완성하기
 
   return (
     <>
-      <ul className={styles.quick} id="quick">
-        {/* <li></li> */}
-        {/**
-         * 동적으로 li태그가 할당 됨.
-         */}
-      </ul>
-      <div dangerouslySetInnerHTML={{ __html: result.content }} />
+      <aside id="quick-wrap" className={styles.quick_link__wrap}>
+        <ul id="quick" className={styles.quick_link__list} />
+      </aside>
+      <div
+        className="post-content"
+        dangerouslySetInnerHTML={{ __html: result.content }}
+      />
     </>
   )
 }

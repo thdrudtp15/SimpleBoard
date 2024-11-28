@@ -1,10 +1,10 @@
 .post_bg {
-  padding: 20px;
+  padding: 2rem;
   padding-top: 200px;
   padding-bottom: 0px;
 }
 
-.jsx {
+.tsx {
   background: linear-gradient(180deg, #007cf0, #00dfd8);
 }
 .css {
@@ -20,6 +20,7 @@
   width: 100%;
   max-width: var(--content-max-width);
   margin: 0 auto;
+  position: relative;
 }
 .post_content {
   padding: var(--content-padding-big);

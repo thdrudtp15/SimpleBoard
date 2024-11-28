@@ -18,7 +18,7 @@ export const categories: { [key in CategoryKeys]: categoryType } = {
   HTML: new CategoryClass('', 'css'),
   CSS: new CategoryClass('', 'css'),
   'JAVA SCRIPT': new CategoryClass('', 'javascript'),
-  REACT: new CategoryClass('', 'jsx'),
+  REACT: new CategoryClass('', 'tsx'),
 }
 
 // new CategoryClass('HTML', 'image', 'css'),

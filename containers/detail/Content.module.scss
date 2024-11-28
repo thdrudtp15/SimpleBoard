@@ -1,20 +1,28 @@
-// img {
-//   max-width: 500px;
-//   max-height: 500px;
-//   object-fit: cover;
-// }
+.quick_link__wrap {
+  position: sticky;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  border-radius: 8px;
+  width: 200px;
+  background-color: rgba(63, 63, 63, 0.13);
+  backdrop-filter: blur(2px);
+  z-index: 3;
+  display: none;
+}
 
-.quick {
+.displayed {
+  display: block;
+}
+
+.quick_link__list {
   display: flex;
   flex-direction: column;
   list-style: circle;
 }
 
 .H1 {
-  background-color: red;
 }
 .H2 {
-  background-color: blue;
-  padding-left: 24px;
-  color: white;
+  padding-left: 12px;
 }
