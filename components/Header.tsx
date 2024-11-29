@@ -9,6 +9,7 @@ const Header = async () => {
         <Link href="/" style={{ fontWeight: 'bold' }}>
           LOGOS
         </Link>
+        <Link href="/write">WRITE</Link>
       </div>
     </header>
   )

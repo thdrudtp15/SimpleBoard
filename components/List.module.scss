@@ -9,3 +9,45 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
+.list__item {
+  padding: 8px;
+  box-sizing: border-box;
+  &:hover .list__title {
+    text-decoration: underline;
+  }
+}
+
+.list__title {
+  margin-bottom: 7px;
+  font-size: 1.8rem;
+}
+.list__subtitle {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: var(--primary-text-color);
+  display: -webkit-box;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list__time_ctg {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list__time {
+  color: #868e96;
+}
+.list__ctg_wrap {
+  display: flex;
+  gap: 4px;
+}
+.list__ctg {
+  padding: 4px 8px;
+  background-color: #868e9636;
+  border-radius: 2px 7px;
+  font-size: 12px;
+}

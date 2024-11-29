@@ -5,9 +5,49 @@
   margin-top: 80px;
 }
 .editor_input__title {
-  padding-bottom: 24px;
+  width: 100%;
+  font-size: 36px;
+  border: none;
+  margin-bottom: 24px;
+  &:focus {
+    outline: none;
+  }
 }
 
+.editor_select {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.editor_select_btn {
+  border-radius: 2px 7px;
+  &.select {
+    background-color: #23cc7750;
+  }
+}
+
+.editor_badge {
+  margin-bottom: 24px;
+}
+
+.editor_badge_input {
+  border: none;
+  margin-bottom: 8px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.editor_badge_list {
+  display: flex;
+  gap: 4px;
+}
+.editor_badge_items {
+  padding: 4px;
+  background-color: #e5e5e550;
+  border-radius: 2px 7px;
+}
 .section_prv {
   background-color: #e5e5e550;
 }

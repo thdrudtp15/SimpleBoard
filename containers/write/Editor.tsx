@@ -13,7 +13,6 @@ import { categories } from '@/constants/category'
 
 import styles from './Editor.module.scss'
 import 'react-quill/dist/quill.snow.css'
-import Input from '../../components/Input'
 import 'highlight.js/styles/atom-one-dark.min.css' // Highlight.js 스타일
 
 hljs.configure({
@@ -42,11 +41,12 @@ const formats = [
 const categoryName = Object.keys(categories).map((item: string) => item)
 
 const Editor = () => {
-  const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
-  const [category, setCategory] = useState<string>('')
+  const [category, setCategory] = useState<string>(categoryName[0])
+  const [tags, setTags] = useState<string[]>([])
 
   const quillRef = useRef<ReactQuill | null>(null)
+  const titleRef = useRef<string | null>('')
   const router = useRouter()
 
   const modules = useMemo(() => {
@@ -118,15 +118,26 @@ const Editor = () => {
   }, [])
 
   const write = async () => {
+    if (!titleRef.current) {
+      error('타이틀을 입력해주세요')
+      return
+    }
+
+    if (!content) {
+      error('아무 내용도 입력하지 않았습니다')
+      return
+    }
+
     const _res = await fetch('/api/post', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title,
+        title: titleRef.current,
         content,
         category,
+        tags,
       }),
     })
     if (_res.status === 200) {
@@ -138,21 +149,63 @@ const Editor = () => {
 
   return (
     <div className={styles.editor_container}>
-      <div className={styles.editor_input__title}>
-        <Input styleSet="write_title" value={title} onChange={setTitle} />
-      </div>
-      <details>
-        <summary>{category || '카테고리를 선택해주세요'}</summary>
-        {categoryName.map((item) => (
+      <input
+        type="text"
+        placeholder="게시글의 제목을 작성해주세요"
+        className={styles.editor_input__title}
+        onChange={(e) => {
+          titleRef.current = e.target.value
+        }}
+      />
+      <div className={styles.editor_select}>
+        {categoryName.map((item: string) => (
           <button
+            className={`${styles.editor_select_btn} ${
+              category === item && styles.select
+            }`}
             type="button"
-            key={`${item}`}
+            key={item}
             onClick={() => setCategory(item)}
           >
             {item}
           </button>
         ))}
-      </details>
+      </div>
+      <div className={styles.editor_badge}>
+        <input
+          className={styles.editor_badge_input}
+          placeholder="서브 카테고리 입력"
+          onKeyDown={(e: any) => {
+            if (e.key === 'Enter') {
+              const copy = [...tags]
+              if (e.target.value) {
+                copy.push(`#${e.target.value}`)
+                setTags(copy)
+                e.target.value = ''
+              }
+            }
+          }}
+          type="text"
+          maxLength={10}
+        />
+        <div className={styles.editor_badge_list}>
+          {tags &&
+            tags.map((item) => (
+              <button
+                type="button"
+                className={styles.editor_badge_items}
+                key={item}
+                onClick={() => {
+                  let copy = [...tags]
+                  copy = copy.filter((tag: string) => tag !== item)
+                  setTags(copy)
+                }}
+              >
+                {item}
+              </button>
+            ))}
+        </div>
+      </div>
 
       <ReactQuill
         modules={modules}
