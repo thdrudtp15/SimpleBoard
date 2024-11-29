@@ -1,0 +1,11 @@
+.list__nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.list__btn {
+  padding: 7px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

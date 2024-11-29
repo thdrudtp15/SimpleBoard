@@ -7,14 +7,14 @@ class CategoryClass {
   codestyle
 }
 
-export type categoryType = {
+type categoryType = {
   image: string
   codestyle: string
 }
 
-type CategoryKeys = 'HTML' | 'CSS' | 'JAVA SCRIPT' | 'REACT'
+export type categoryKeys = 'HTML' | 'CSS' | 'JAVA SCRIPT' | 'REACT'
 
-export const categories: { [key in CategoryKeys]: categoryType } = {
+export const categories: { [key in categoryKeys]: categoryType } = {
   HTML: new CategoryClass('', 'css'),
   CSS: new CategoryClass('', 'css'),
   'JAVA SCRIPT': new CategoryClass('', 'javascript'),

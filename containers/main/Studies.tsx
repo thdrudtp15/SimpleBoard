@@ -1,10 +1,10 @@
 import { MongoClient } from 'mongodb'
-import Link from 'next/link'
 
 import { connectDB } from '@/db/database'
 import { postType } from '@/types/types'
-import { categories } from '@/constants/category'
+import { categories, categoryKeys } from '@/constants/category'
 
+import List from '../../components/List'
 import styles from './Studies.module.scss'
 
 const Studies = async () => {
@@ -20,11 +20,9 @@ const Studies = async () => {
       } as postType),
   )
 
-  type CategoryKeys = 'HTML' | 'CSS' | 'JAVA SCRIPT' | 'REACT'
-
-  const data: { [key in CategoryKeys]?: postType[] } = {}
+  const data: { [key in categoryKeys]?: postType[] } = {}
   Object.keys(categories).forEach((key: string) => {
-    data[key as CategoryKeys] = studies.filter(
+    data[key as categoryKeys] = studies.filter(
       (study) => study.category === key,
     )
   })
@@ -34,40 +32,7 @@ const Studies = async () => {
 
   return (
     <section className={styles.studies__container}>
-      <main className={styles.studies__inner}>
-        <div className={styles.studies__list_header}>
-          <section>{4} Categories</section>
-          <section>{studies.length} Studies</section>
-        </div>
-        {Object.entries(categories).map(([key]) => (
-          <article key={key} className={styles.studies__list_category}>
-            <section className={styles.studies__category}>
-              <h3>{key}</h3>
-            </section>
-            <section className={styles.studies__content_box}>
-              <ul className={styles.studies__ul}>
-                {data[key as CategoryKeys]?.map(
-                  (study: postType, index: number) => (
-                    <li key={study._id.toString()}>
-                      <Link
-                        className={styles.studies__content_list}
-                        href={`/post/${study._id}`}
-                      >
-                        <p className={styles.studies__content_number}>
-                          {index + 1}.
-                        </p>
-                        <p className={styles.studies__content_title}>
-                          {study.title}
-                        </p>
-                      </Link>
-                    </li>
-                  ),
-                )}
-              </ul>
-            </section>
-          </article>
-        ))}
-      </main>
+      <List data={data} />
     </section>
   )
 }

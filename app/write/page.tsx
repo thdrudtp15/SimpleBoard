@@ -1,8 +1,6 @@
-import dynamic from 'next/dynamic'
+'use client'
 
-const Editor = dynamic(() => import(`@/containers/write/Editor`), {
-  ssr: false,
-})
+import Editor from '@/containers/write/Editor'
 
 const Page = () => {
   return <Editor />

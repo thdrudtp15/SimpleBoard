@@ -1,6 +1,6 @@
 'use client'
 
-import '../../app/ReactQuill.css'
+import hljs from 'highlight.js'
 import ReactQuill from 'react-quill'
 import { ToastContainer } from 'react-toastify'
 import { useMemo, useRef, useState } from 'react'
@@ -14,6 +14,11 @@ import { categories } from '@/constants/category'
 import styles from './Editor.module.scss'
 import 'react-quill/dist/quill.snow.css'
 import Input from '../../components/Input'
+import 'highlight.js/styles/atom-one-dark.min.css' // Highlight.js 스타일
+
+hljs.configure({
+  languages: ['javascript', 'ruby', 'python', 'java', 'cpp', 'kotlin', 'sql'],
+})
 
 const formats = [
   'font',
@@ -36,8 +41,6 @@ const formats = [
 
 const categoryName = Object.keys(categories).map((item: string) => item)
 
-console.log(categoryName)
-
 const Editor = () => {
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
@@ -48,6 +51,9 @@ const Editor = () => {
 
   const modules = useMemo(() => {
     return {
+      syntax: {
+        highlight: (text: string) => hljs.highlightAuto(text).value,
+      },
       toolbar: {
         container: [
           ['blockquote', 'code-block'],
@@ -132,7 +138,6 @@ const Editor = () => {
 
   return (
     <div className={styles.editor_container}>
-      <ToastContainer />
       <div className={styles.editor_input__title}>
         <Input styleSet="write_title" value={title} onChange={setTitle} />
       </div>
@@ -148,6 +153,7 @@ const Editor = () => {
           </button>
         ))}
       </details>
+
       <ReactQuill
         modules={modules}
         theme="snow"
@@ -158,21 +164,12 @@ const Editor = () => {
         formats={formats}
         ref={quillRef}
       />
+      <ToastContainer />
       <button type="button" onClick={write}>
         작성
       </button>
     </div>
   )
 }
-
-/* <label>
-비공개
-<input
-  type="checkbox"
-  checked={publicOption}
-  onChange={() => setPublicOption((prev) => !prev)}
-/>
-</label>
-<button onClick={write}>글쓰기</button> */
 
 export default Editor
