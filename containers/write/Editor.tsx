@@ -13,11 +13,9 @@ import { categories } from '@/constants/category'
 
 import styles from './Editor.module.scss'
 import 'react-quill/dist/quill.snow.css'
+import '../../app/quill.css'
 import 'highlight.js/styles/atom-one-dark.min.css' // Highlight.js 스타일
-
-hljs.configure({
-  languages: ['javascript', 'ruby', 'python', 'java', 'cpp', 'kotlin', 'sql'],
-})
+import ContentContainer from '@/components/ContentContainer'
 
 const formats = [
   'font',
@@ -41,6 +39,10 @@ const formats = [
 const categoryName = Object.keys(categories).map((item: string) => item)
 
 const Editor = () => {
+  hljs.configure({
+    languages: ['javascript', 'ruby', 'python', 'java', 'cpp', 'kotlin', 'sql'],
+  })
+
   const [content, setContent] = useState<string>('')
   const [category, setCategory] = useState<string>(categoryName[0])
   const [tags, setTags] = useState<string[]>([])
@@ -148,7 +150,8 @@ const Editor = () => {
   }
 
   return (
-    <div className={styles.editor_container}>
+    // <div className={styles.editor_container}>
+    <ContentContainer>
       <input
         type="text"
         placeholder="게시글의 제목을 작성해주세요"
@@ -221,7 +224,8 @@ const Editor = () => {
       <button type="button" onClick={write}>
         작성
       </button>
-    </div>
+    </ContentContainer>
+    // </div>
   )
 }
 

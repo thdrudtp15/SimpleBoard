@@ -5,12 +5,12 @@ import styles from './Header.module.scss'
 const Header = async () => {
   return (
     <header className={styles.header}>
-      <div className={styles.header_content}>
+      <nav className={styles.header__nav}>
         <Link href="/" style={{ fontWeight: 'bold' }}>
           LOGOS
         </Link>
         <Link href="/write">WRITE</Link>
-      </div>
+      </nav>
     </header>
   )
 }

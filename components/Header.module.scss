@@ -7,34 +7,22 @@
 
 .header {
   width: 100%;
-  background-color: transparent;
+  background-color: rgb(31, 31, 31);
   @include flex(center, space-between, row);
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
 }
-.header_content {
+.header__nav {
   height: 50px;
-  width: 55%;
+  width: 100%;
+  max-width: 720px;
   display: flex;
   margin: 0 auto;
   gap: var(--flex-gap-small);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
   @include flex(center, flex-start, 'row');
+  color: white;
+  padding: 0px 16px;
 }
-.profile_box {
-  width: fit-content;
-  @include flex(center, center, row);
-  padding: 10px;
-  gap: 12px;
-}
-
-// .profile_img {
-//   border-radius: 50%;
-// }
-
-// .profile_name {
-//   font-size: var(--font-size-base);
-//   font-weight: bold;
-// }

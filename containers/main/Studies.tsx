@@ -30,11 +30,7 @@ const Studies = async () => {
   // 맵은 배열을 반환
   // forEach는 반환이 필요없는 순회 작업에 더 적합함
 
-  return (
-    <section className={styles.studies__container}>
-      <List data={data} />
-    </section>
-  )
+  return <List data={data} />
 }
 
 export default Studies

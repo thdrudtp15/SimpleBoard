@@ -7,6 +7,7 @@ import { postType } from '@/types/types'
 import { categoryKeys } from '@/constants/category'
 
 import styles from './List.module.scss'
+import ContentContainer from './ContentContainer'
 
 const List = ({ data }: { data?: { [key in categoryKeys]?: postType[] } }) => {
   const [selectedCategory, setSelectedCategory] = useState<categoryKeys>('HTML')
@@ -18,10 +19,8 @@ const List = ({ data }: { data?: { [key in categoryKeys]?: postType[] } }) => {
     }
   }, [data, selectedCategory])
 
-  console.log(data)
-
   return (
-    <section>
+    <ContentContainer>
       <nav className={styles.list__nav}>
         {Object.keys(data as postType).map((item) => (
           <button
@@ -61,7 +60,7 @@ const List = ({ data }: { data?: { [key in categoryKeys]?: postType[] } }) => {
           </Link>
         ))}
       </main>
-    </section>
+    </ContentContainer>
   )
 }
 
